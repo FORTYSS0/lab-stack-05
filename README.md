@@ -1,5 +1,9 @@
 # Лабораторная работа №5
 
+| branch | status |
+|--------|--------|
+| fortyss-parser |[![Build Status](https://github.com/FORTYSS0/lab-stack-05/workflows/CI/badge.svg)](https://travis-ci.com/github/FORTYSS0/lab-stack-05)|
+
 ## Задание 1
 Реализовать некопируемый перемещаемый шаблон класса **stack** с методами `pop`, `push`, `head`. 
 ```cpp
