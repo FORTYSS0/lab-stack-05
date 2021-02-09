@@ -11,7 +11,7 @@ class StackTwo
   StackTwo(const Stack&) = delete;
   StackTwo operator = (const Stack&&) = delete;
   Stack() {
-    StackObj* now = new StackObj();
+    StackObj* now = new StackObj(nullptr);
     len = 0;
   }
     void push_emplace(Args&&... value) {

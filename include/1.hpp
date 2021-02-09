@@ -12,7 +12,7 @@ class Stack
   Stack(const Stack&) = delete;
   Stack operator = (const Stack&&) = delete;
   Stack() {
-    StackObj* now = new StackObj();
+    StackObj* now = new StackObj(nullptr);
     len=0;
   }
   void push(T&& value) {
