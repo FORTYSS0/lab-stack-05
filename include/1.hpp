@@ -44,8 +44,8 @@ class Stack
     typedef  std::unique_ptr < StackObj> StackObjPtr;
     StackObjPtr last;
     T val;
-    explicit StackObj(StackObjPtr ref = nullptr, T val= T()) {
-      auto valu = val;
+    explicit StackObj(StackObjPtr ref = nullptr, T valu= T()) {
+      val = valu;
       last = std::move(ref);
     }
   };
