@@ -29,7 +29,7 @@ class Stack
     if(len>=1) {
       len--;
       auto del = ref;
-      std::shared_ptr<auto> ptr(del);
+      std::shared_ptr<T> ptr(del);
       ref = ref->last;
       return del;
     }
