@@ -43,7 +43,7 @@ class StackTwo
     typedef  std::unique_ptr < StackObj> StackObjPtr;
     StackObjPtr last;
     T val;
-    explicit StackObj(StackObjPtr ref = nullptr, T val= T()) {
+    explicit StackObj(StackObjPtr ref = nullptr, T valu= T()) {
       val=std::forward(valu);
       last = std::move(ref);
     }
