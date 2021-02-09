@@ -5,3 +5,6 @@
 TEST(Example, EmptyTest) {
     EXPECT_TRUE(true);
 }
+TEST(Example, EmptyTest) {
+  EXPECT_TRUE(true);
+}
