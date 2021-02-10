@@ -11,28 +11,27 @@ class Stack
  public:
   Stack(const Stack&) = delete;
   Stack& operator = (const Stack&) = delete;
-  Stack() {
-    StackObj* now = new StackObj(nullptr);
-    len=0;
+  Stack(): ref(nullptr), len(0) {
   }
   void push(T&& value) {
-    auto mov = new StackObj(std::move(ref), std::forward<T>(value));
-    ref = std::make_unique(mov);
+    auto mov = std::unique_ptr<StackObj>(new StackObj(std::move(ref),
+                                                      std::move(value)));
+    ref = std::move(mov);
     len++;
   }
   void push(const T& value) {
-    auto mov = new StackObj(std::move(ref), std::forward<T>(value));
-    ref = std::make_unique(mov);
+    auto mov = std::unique_ptr<StackObj>(new StackObj(std::move(ref), (value)));
+    ref = std::move(mov);
     len++;
   }
   T pop() {
     if(len>=1) {
       len--;
-      auto del = ref;;
-      ref = ref->last;
-      return *del;
+      auto del = std::move(ref);
+      ref = std::move( ref->last);
+      return del->val;
     }
-    return nullptr;
+    return T();
   }
   const T& head() const {
     return ref->val;
