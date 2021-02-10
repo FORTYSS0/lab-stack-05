@@ -9,7 +9,7 @@ class StackTwo
  public:
 
   StackTwo(const StackTwo&) = delete;
-  StackTwo operator = (const StackTwo&&) = delete;
+  StackTwo& operator = (const StackTwo&&) = delete;
   StackTwo() {
     StackObj* now = new StackObj(nullptr);
     len = 0;
