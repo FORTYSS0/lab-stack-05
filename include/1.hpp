@@ -10,7 +10,7 @@ class Stack
 {
  public:
   Stack(const Stack&) = delete;
-  Stack operator = (const Stack&&) = delete;
+  Stack& operator = (const Stack&&) = delete;
   Stack() {
     StackObj* now = new StackObj(nullptr);
     len=0;
