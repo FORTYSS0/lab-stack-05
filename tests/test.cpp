@@ -16,8 +16,7 @@ TEST(First, True) {
   EXPECT_EQ(MySteck.pop(), 2);
   EXPECT_EQ(MySteck.head(), 1);
   EXPECT_EQ(MySteck.pop(), 1);
-  EXPECT_EQ(MySteck.head(), int());
-  EXPECT_EQ(MySteck.pop(), int());
+  EXPECT_EQ(MySteck.size(), 0);
   EXPECT_FALSE(std::is_copy_constructible<Stack<int>>::value);
   EXPECT_FALSE(std::is_copy_assignable<Stack<int>>::value);
 }

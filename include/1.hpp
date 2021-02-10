@@ -27,14 +27,18 @@ class Stack
   T pop() {
     if(len>=1) {
       len--;
-      auto del = std::move(ref);
+      auto del = ref->val;
       ref = std::move( ref->last);
-      return del->val;
+      return del;
     }
     return T();
   }
   const T& head() const {
     return ref->val;
+  }
+
+  size_t size() const {
+    return len;
   }
 
  private:
