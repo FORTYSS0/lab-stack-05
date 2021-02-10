@@ -14,8 +14,7 @@ class StackTwo
     StackObj* now = new StackObj(nullptr);
     len = 0;
   }
-  StackTwo(std::initializer_list<T> args){
-  }
+  //StackTwo(std::initializer_list<T> args){  }
   template <typename ... Args>
     void push_emplace(Args&&... value) {
       auto vall = T (std::forward<Args>(value)...);
