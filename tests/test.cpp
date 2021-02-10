@@ -9,7 +9,10 @@ TEST(Example, EmptyTest) {
 }
 TEST(First, True) {
 
-EXPECT_TRUE(true);
+  EXPECT_FALSE(std::is_copy_constructible<Stack<int>>::value);
+  EXPECT_TRUE(std::is_move_constructible<Stack<int>>::value);
+  EXPECT_TRUE(std::is_move_assignable<Stack<int>>::value);
+  EXPECT_FALSE(std::is_copy_assignable<Stack<int>>::value);
 }
 TEST(First, False) {
 
