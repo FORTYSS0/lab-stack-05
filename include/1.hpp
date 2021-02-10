@@ -28,10 +28,9 @@ class Stack
   T pop() {
     if(len>=1) {
       len--;
-      auto del = ref;
-      std::shared_ptr<T> ptr(del);
+      auto del = ref;;
       ref = ref->last;
-      return del;
+      return *del;
     }
     return nullptr;
   }
