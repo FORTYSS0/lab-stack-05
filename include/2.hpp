@@ -7,13 +7,14 @@ template <typename T>
 class StackTwo
 {
  public:
-  template <typename ... Args>
-  StackTwo(const Stack&) = delete;
-  StackTwo operator = (const Stack&&) = delete;
-  Stack() {
+
+  StackTwo(const StackTwo&) = delete;
+  StackTwo operator = (const StackTwo&&) = delete;
+  StackTwo() {
     StackObj* now = new StackObj(nullptr);
     len = 0;
   }
+  template <typename ... Args>
     void push_emplace(Args&&... value) {
       auto vall = T (std::forward<Args>(value)...);
       auto mov = new StackObj(std::move(ref), std::move(vall));
