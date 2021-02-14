@@ -10,16 +10,10 @@ class StackTwo
 
   StackTwo(const StackTwo&) = delete;
   StackTwo& operator = (const StackTwo&) = delete;
-   StackTwo(): ref(nullptr), len(0) {
-  }
+  StackTwo(): ref(nullptr), len(0) {}
   template <typename ... Args>
     void push_emplace(Args&&... value) {
       auto vall = T (std::forward<Args>(value)...);
-     /* auto mov = std::make_unique<StackObj>(
-        StackObj(
-            std::move(ref),
-            std::move(vall)
-                    ));*/
       auto mov = new StackObj(std::move(ref), std::move(vall));
       ref = std::move(std::make_unique<StackObj>(mov));
       len++;
