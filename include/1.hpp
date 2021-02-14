@@ -25,13 +25,13 @@ class Stack
     len++;
   }
   T pop() {
-    if(len>=1) {
+    if (len >= 1) {
       len--;
       auto del = ref->val;
-      ref = std::move( ref->last);
+      ref = std::move(ref->last);
       return del;
     }
-    return T();
+    throw std::runtime_error("Stack is empty");
   }
   const T& head() const {
     return ref->val;

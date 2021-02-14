@@ -17,6 +17,13 @@ TEST(First, True) {
   EXPECT_EQ(MySteck.head(), 1);
   EXPECT_EQ(MySteck.pop(), 1);
   EXPECT_EQ(MySteck.size(), 0);
+  std::string err = "Stack is empty";
+  try {
+    size_t k = MySteck.pop();
+  }
+  catch (std::runtime_error& error) {
+    EXPECT_EQ(error.what(), err);
+  }
   EXPECT_FALSE(std::is_copy_constructible<Stack<int>>::value);
   EXPECT_FALSE(std::is_copy_assignable<Stack<int>>::value);
 }
