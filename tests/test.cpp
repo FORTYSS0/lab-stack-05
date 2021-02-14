@@ -29,8 +29,6 @@ TEST(First, True) {
 }
 class Myclass {
  public:
-  Myclass(Myclass&) = delete;
-  Myclass& operator=(Myclass&) = delete;
   Myclass(){
     t0 = 0;
     t1 = 0.1;
@@ -50,7 +48,7 @@ TEST(Second, True) {
   int t0 = 2;
   double t1 = 2.2;
   std::string t2 = "2";
-  MySteck.push(Myclass());
+  //MySteck.push(Myclass());
   MySteck.push_emplace(1, 1.1, "1");
   MySteck.push_emplace(t0, t1, t2);
   EXPECT_EQ(MySteck.head(), 2);

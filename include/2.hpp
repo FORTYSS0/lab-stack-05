@@ -26,7 +26,7 @@ class StackTwo
     }
   void push(T&& value) {
     auto mov = new StackObj(std::move(ref), std::forward<T>(value));
-    ref = std::make_unique(mov);
+    ref = std::move(std::make_unique(mov));
     len++;
   }
   const T& head() const {
@@ -49,8 +49,8 @@ class StackTwo
     typedef  std::unique_ptr < StackObj> StackObjPtr;
     StackObjPtr last;
     T val;
-    explicit StackObj(StackObjPtr ref = nullptr, T valu= T()) {
-      val=std::forward(valu);
+    explicit StackObj(StackObjPtr ref = nullptr, T&& valu= T()) {
+      val=std::forward<T>(valu);
       last = std::move(ref);
     }
   };
