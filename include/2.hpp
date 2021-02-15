@@ -10,37 +10,30 @@ class StackTwo
 
   StackTwo(const StackTwo&) = delete;
   StackTwo& operator = (const StackTwo&) = delete;
-  StackTwo(): ref(nullptr), len(0) {}
+  StackTwo(): ref(nullptr) {}
   template <typename ... Args>
     void push_emplace(Args&&... value) {
-      auto vall = T (std::forward<Args>(value)...);
-      auto mov = new StackObj(std::move(ref), std::move(vall));
-      ref = std::move(std::make_unique<StackObj>(mov));
-      len++;
+      auto mov = new StackObj(std::move(ref), T (std::forward<Args>(value)...));
+      ref = std::move(std::make_unique<StackObj>(mov));;
     }
   void push(T&& value) {
     auto mov = new StackObj(std::move(ref), std::forward<T>(value));
     ref = std::move(std::make_unique(mov));
-    len++;
   }
   const T& head() const {
       return ref->val;
   }
   T pop() {
-    if (len >= 1) {
-      len--;
+    if (ref!= nullptr) {
       auto del = ref->val;
       ref = std::move(ref->last);
       return del;
     }
     throw std::runtime_error("Stack is empty");
   }
-  size_t size() const {
-    return len;
-  }
  private:
   struct StackObj{
-    typedef  std::unique_ptr < StackObj> StackObjPtr;
+    typedef  std::unique_ptr <StackObj> StackObjPtr;
     StackObjPtr last;
     T val;
     explicit StackObj(StackObjPtr ref = nullptr, T&& valu= T()) {
@@ -49,7 +42,6 @@ class StackTwo
     }
   };
   std::unique_ptr<StackObj> ref;
-  size_t len;
 };
 
 #endif  // TEMPLATE_2_HPP
