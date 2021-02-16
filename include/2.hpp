@@ -39,7 +39,8 @@ class StackTwo
       val=std::forward<T>(valu);
       last = std::move(ref);
     }
-    ~StackObj(){delete last;}
+    ~StackObj(){delete last;
+    delete val;}
   };
   StackObj* ref;
 };
