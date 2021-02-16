@@ -10,6 +10,7 @@ class StackTwo
   StackTwo(const StackTwo&) = delete;
   StackTwo& operator = (const StackTwo&) = delete;
   StackTwo(): ref(nullptr) {}
+  ~StackTwo(){delete ref;}
   template <typename ... Args>
     void push_emplace(Args&&... value) {
     auto mov = new StackObj(std::move(ref), T(std::forward<Args>(value)...));
