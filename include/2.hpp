@@ -13,19 +13,19 @@ class StackTwo
   StackTwo(): ref(nullptr) {}
   template <typename ... Args>
     void push_emplace(Args&&... value) {
-      auto mov = new StackObj(std::move(ref), T (std::forward<Args>(value)...));
-      ref = std::move(std::make_unique<StackObj>(mov));;
+    auto mov = new StackObj(std::move(ref), T(std::forward<Args>(value)...));
+    ref = std::move(mov);
     }
   void push(T&& value) {
     auto mov = new StackObj(std::move(ref), std::forward<T>(value));
-    ref = std::move(std::make_unique(mov));
+    ref = std::move(mov);
   }
   const T& head() const {
       return ref->val;
   }
   T pop() {
     if (ref!= nullptr) {
-      auto del = ref->val;
+      T del =std::move( ref->val);
       ref = std::move(ref->last);
       return del;
     }
@@ -33,15 +33,14 @@ class StackTwo
   }
  private:
   struct StackObj{
-    typedef  std::unique_ptr <StackObj> StackObjPtr;
-    StackObjPtr last;
+    StackObj* last;
     T val;
-    explicit StackObj(StackObjPtr ref = nullptr, T&& valu= T()) {
+    explicit StackObj(StackObj* ref = nullptr, T&& valu= T()) {
       val=std::forward<T>(valu);
       last = std::move(ref);
     }
   };
-  std::unique_ptr<StackObj> ref;
+  StackObj* ref;
 };
 
 #endif  // TEMPLATE_2_HPP
