@@ -59,6 +59,8 @@ TEST(Second, True) {
   std::string t2 = "2";
   MySteck.push_emplace(Myclass(1, 1.1, "12"));
   MySteck.push_emplace(t0, t1, t2);
+  MySteck.push(Myclass());
+  EXPECT_EQ(MySteck.pop().t2, "0");
   EXPECT_EQ(MySteck.head().t0, 2);
   EXPECT_EQ(MySteck.pop().t1, 2.2);
   EXPECT_EQ(MySteck.head().t0, 1);
