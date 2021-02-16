@@ -34,7 +34,6 @@ class Stack
   const T& head() const {
     return ref->val;
   }
-
  private:
   struct StackObj{
     typedef  std::unique_ptr < StackObj> StackObjPtr;
