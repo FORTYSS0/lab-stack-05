@@ -26,6 +26,7 @@ class StackTwo
   T pop() {
     if (ref!= nullptr) {
       T del =std::move( ref->val);
+      //std::unique_ptr<T> del = std::make_unique<T>(std::move( ref->val));
       ref = std::move(ref->last);
       return del;
     }
