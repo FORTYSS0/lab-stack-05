@@ -7,7 +7,6 @@ template <typename T>
 class StackTwo
 {
  public:
-
   StackTwo(const StackTwo&) = delete;
   StackTwo& operator = (const StackTwo&) = delete;
   StackTwo(): ref(nullptr) {}
