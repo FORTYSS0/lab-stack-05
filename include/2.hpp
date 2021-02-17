@@ -10,15 +10,20 @@ class StackTwo
   StackTwo(const StackTwo&) = delete;
   StackTwo& operator = (const StackTwo&) = delete;
   StackTwo(): ref(nullptr) {}
-  ~StackTwo(){delete ref;}
+  ~StackTwo(){
+    while (ref) {
+      pop();
+    }
+    //delete ref;
+  }
   template <typename ... Args>
     void push_emplace(Args&&... value) {
-    auto mov = new StackObj(std::move(ref), T(std::forward<Args>(value)...));
-    ref = std::move(mov);
+    ref = std::move(std::make_unique<StackObj>(
+        StackObj(std::move(ref), std::move(T(std::forward<Args>(value)...)))));
     }
   void push(T&& value) {
-    auto mov = new StackObj(std::move(ref), std::forward<T>(value));
-    ref = std::move(mov);
+    ref = std::move(std::make_unique<StackObj>(
+        StackObj(std::move(ref), std::forward<T>(value))));
   }
   const T& head() const {
       return ref->val;
@@ -26,7 +31,7 @@ class StackTwo
   T pop() {
     if (ref!= nullptr) {
       T del =std::move( ref->val);
-      //std::unique_ptr<T> del = std::make_unique<T>(std::move( ref->val));
+      //std::shared_ptr<T> dell = std::make_shared<T>(ref->last);
       ref = std::move(ref->last);
       return del;
     }
@@ -34,15 +39,14 @@ class StackTwo
   }
  private:
   struct StackObj{
-    StackObj* last;
+    std::unique_ptr<StackObj> last;
     T val;
-    explicit StackObj(StackObj* ref = nullptr, T&& valu= T()) {
+    explicit StackObj(std::unique_ptr<StackObj> ref = nullptr, T&& valu= T()) {
       val=std::forward<T>(valu);
       last = std::move(ref);
     }
-    ~StackObj(){delete last;}
   };
-  StackObj* ref;
+  std::unique_ptr<StackObj> ref;
 };
 
 #endif  // TEMPLATE_2_HPP
