@@ -14,7 +14,6 @@ class StackTwo
     while (ref) {
       pop();
     }
-    //delete ref;
   }
   template <typename ... Args>
     void push_emplace(Args&&... value) {
@@ -31,7 +30,6 @@ class StackTwo
   T pop() {
     if (ref!= nullptr) {
       T del =std::move( ref->val);
-      //std::shared_ptr<T> dell = std::make_shared<T>(ref->last);
       ref = std::move(ref->last);
       return del;
     }
